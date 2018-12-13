@@ -5,3 +5,10 @@ C:\Users\Дмитрий Дудник\Desktop\ITYardService\ITYardService\bin\Deb
 C:\Users\Дмитрий Дудник\Desktop\ITYardService\ITYardService\bin\Debug\ITYardService.pdb
 C:\Users\Дмитрий Дудник\Desktop\ITYardService\ITYardService\obj\Debug\ITYardService.exe
 C:\Users\Дмитрий Дудник\Desktop\ITYardService\ITYardService\obj\Debug\ITYardService.pdb
+C:\ITYardService\ITYardService\bin\Debug\ITYardService.exe.config
+C:\ITYardService\ITYardService\bin\Debug\ITYardService.exe
+C:\ITYardService\ITYardService\bin\Debug\ITYardService.pdb
+C:\ITYardService\ITYardService\obj\Debug\ITYardService.csprojAssemblyReference.cache
+C:\ITYardService\ITYardService\obj\Debug\ITYardService.csproj.CoreCompileInputs.cache
+C:\ITYardService\ITYardService\obj\Debug\ITYardService.exe
+C:\ITYardService\ITYardService\obj\Debug\ITYardService.pdb

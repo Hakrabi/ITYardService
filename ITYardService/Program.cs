@@ -34,7 +34,10 @@ namespace ITYardService
             repo.DisplayUserInfo(usr1._id);
             repo.DisplayUserInfo(usr2._id);
 
+            Console.WriteLine("\nDecrypt");
 
+            repo.DisplayUserInfoDecrypt(usr1._id);
+            repo.DisplayUserInfoDecrypt(usr2._id);
 
             Console.ReadKey();
 

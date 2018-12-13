@@ -39,9 +39,13 @@ namespace ITYardService
 
         public void DisplayUserInfo(Guid id)
         {
-            Console.WriteLine($"\nUsername: {_users[id]._username}\nPassword: {Decrypt( _users[id]._username, Encrypt(id) )}");
+            Console.WriteLine($"\nUsername: {_users[id]._username}\nPassword: {Encrypt(id)}");
         }
 
+        public void DisplayUserInfoDecrypt(Guid id)
+        {
+            Console.WriteLine($"\nUsername: {_users[id]._username}\nPassword: {Decrypt(_users[id]._username, Encrypt(id))}");
+        } 
         public char[] RealKey(string username, string password)
         {
 
@@ -95,7 +99,6 @@ namespace ITYardService
                     if (passwordEncrypt[i] == (j* realKey[i])%128)
                     {
                         DecryptText[i] = (char)j;
-                        //break;
                     }
                 }
             }
