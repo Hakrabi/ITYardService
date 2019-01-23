@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ITYardService.Repository;
+using ITYardService.common;
 
-namespace ITYardService
+
+namespace ITYardService.Models
 {
-    class Order : EntityBase
+    public class Order : EntityBase
     {
-        public Customer Customer;
-        public DateTime OrderDate;
-        public Address ShippingAdress;
-        public List<OrderItem> OrderItems = new List<OrderItem>();
+        public Customer Customer { get; set; }
+        public DateTime OrderDate { get; set; }
+        public Address ShippingAdress { get; set; }
+        public OrderItemRepository OrderItems { get; set; }
 
-        public Order(int OrderId, Customer Customer, DateTime OrderDate, Address ShippingAdress, List<OrderItem> OrderItems)
+        public Order(int OrderId, Customer Customer, DateTime OrderDate, Address ShippingAdress, OrderItemRepository OrderItems)
         {
             base.Id = OrderId;
             this.Customer = Customer;
@@ -22,7 +25,7 @@ namespace ITYardService
 
         public override void DisplayEntityInfo()
         {
-            Console.WriteLine($"\Order Id - {base.Id}");
+            Console.WriteLine($"\nOrder7 Id - {base.Id}");
 
             Console.WriteLine("\nCustomer:");
             (this.Customer).DisplayEntityInfo();
@@ -33,7 +36,7 @@ namespace ITYardService
             (this.ShippingAdress).DisplayEntityInfo();
 
             Console.WriteLine("\nOrder items:");
-            foreach (var item in this.OrderItems)
+            foreach (var item in (this.OrderItems).All())
             {
                 item.DisplayEntityInfo();
             }
@@ -41,12 +44,15 @@ namespace ITYardService
 
         public new bool Validate()
         {
-            var isValid = true;
-            if (!Customer.Validate()) isValid = false;
-            if (!ShippingAdress.Validate()) isValid = false;
-            if (OrderItems.Count == 0) isValid = false;
 
-            return isValid;
+            if (OrderItems.Count <= 0)
+            {
+                Logger.LogError("Validate error");
+                return false;
+            }
+            return true;
         }
+
+
     }
 }

@@ -3,8 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ITYardService.common;
+using ITYardService.Models;
 
-namespace ITYardService
+
+
+namespace ITYardService.Repository
 {
     public class UserRepository
     {
@@ -18,7 +22,14 @@ namespace ITYardService
 
         public void Insert(user user)
         {
-            _users.Add(user._id, user);
+            if (user.Validate())
+            {
+                _users.Add(user._id, user);
+                Logger.LogInfo($"User {user._id} was inserted");
+                return;
+            }
+            Logger.LogError("Validate crash");
+
         }
 
         public user GetById(Guid id)
@@ -34,7 +45,13 @@ namespace ITYardService
 
         public void Delete(Guid id)
         {
-            _users.Remove(id);
+            if (_users.ContainsKey(id))
+            {
+                _users.Remove(id);
+                Logger.LogInfo($"User {id} was deleted");
+                return;
+            }
+            Logger.LogError("Id not exist");
         }
 
         public void DisplayUserInfo(Guid id)

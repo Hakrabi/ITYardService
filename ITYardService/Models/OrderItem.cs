@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ITYardService.common;
 
-namespace ITYardService
+
+namespace ITYardService.Models
 {
-    class OrderItem : EntityBase
+    public class OrderItem : EntityBase
     {
-        public Product Product;
-        public int Quantity;
-        public decimal PurchasePrice;
+        public Product Product { get; set; }
+        public int Quantity { get; set; }
+        public decimal PurchasePrice { get; set; }
 
 
-        public OrderItem(int OrderItemId, Product Product, int Quantity, Decimal PurchasePrice )
+        public OrderItem(int OrderItemId, Product Product, int Quantity)
         {
             base.Id = OrderItemId;
             this.Product = Product;
             this.Quantity = Quantity;
-            this.PurchasePrice = PurchasePrice;
+            this.PurchasePrice = Product.CurrentPrice*Quantity;
         }
 
 
@@ -25,5 +27,14 @@ namespace ITYardService
             Console.WriteLine($"Product Id - {base.Id}, product name - {(this.Product).ProductName}, quantity - {this.Quantity}, purchase price - {this.PurchasePrice}");
         }
 
+        public new bool Validate()
+        {
+            if (Quantity <= 0)
+            {
+                Logger.LogError("Validate error");
+                return false;
+            }
+            return true;
+        }
     }
 }

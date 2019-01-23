@@ -1,0 +1,10 @@
+Type info; 	 message: Customer 1 was inserted
+Type info; 	 message: Customer 1 was inserted
+Type info; 	 message: Product 1 was inserted
+Type info; 	 message: Product 2 was inserted
+Type info; 	 message: Order Item 1 was inserted
+Type info; 	 message: Order Item 2 was inserted
+Type info; 	 message: Order 1 was inserted
+Type info; 	 message: Order Item 3 was inserted
+Type info; 	 message: Order 2 was inserted
+Type info; 	 message: Product 2 was deleted

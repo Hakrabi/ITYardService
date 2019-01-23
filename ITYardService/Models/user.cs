@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ITYardService.common;
 
-namespace ITYardService
+namespace ITYardService.Models
 {
     public class user
     {
@@ -27,7 +28,20 @@ namespace ITYardService
         {
             Console.WriteLine($"Username - {this._username} and password - {this._password}");
         }
+        public bool Validate()
+        {
+            var isValid = true;
+            if (string.IsNullOrWhiteSpace(_username)) isValid = false; 
+            if (string.IsNullOrWhiteSpace(_password)) isValid = false;
 
+            if (!isValid)
+            {
+                Logger.LogError("Validate error");
+            }
+
+            return isValid;
+        }
     }
+
 
 }
