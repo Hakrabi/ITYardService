@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Text;
 using ITYardService.Repository;
 using ITYardService.common;
-
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
 
 namespace ITYardService.Models
 {
+    [DataContract]
     public class Order : EntityBase
     {
-        public Customer Customer { get; set; }
-        public DateTime OrderDate { get; set; }
-        public Address ShippingAdress { get; set; }
-        public OrderItemRepository OrderItems { get; set; }
+        [DataMember] public Customer Customer { get; set; }       
+        [DataMember] public DateTime OrderDate { get; set; }
+        [DataMember] public Address ShippingAdress { get; set; }
+        [DataMember] public Guid[] OrderItems { get; set; }
 
-        public Order(int OrderId, Customer Customer, DateTime OrderDate, Address ShippingAdress, OrderItemRepository OrderItems)
+        public Order(Guid OrderId, Customer Customer, DateTime OrderDate, Address ShippingAdress, Guid[] OrderItems)
         {
             base.Id = OrderId;
             this.Customer = Customer;
@@ -35,17 +37,17 @@ namespace ITYardService.Models
             Console.WriteLine("\nShipping adress:");
             (this.ShippingAdress).DisplayEntityInfo();
 
-            Console.WriteLine("\nOrder items:");
-            foreach (var item in (this.OrderItems).All())
+            Console.WriteLine("\nOrder items id:");
+            foreach (var item in (this.OrderItems))
             {
-                item.DisplayEntityInfo();
+                Console.WriteLine(item);
             }
         }
 
-        public new bool Validate()
+        public override bool Validate()
         {
 
-            if (OrderItems.Count <= 0)
+            if (OrderItems.Length <= 0)
             {
                 Logger.LogError("Validate error");
                 return false;

@@ -13,7 +13,7 @@ namespace ITYardService.Repository
     public class ProductRepository
     {
 
-        public static Dictionary<int, Product> _products = new Dictionary<int, Product>();
+        public static Dictionary<Guid, Product> _products = new Dictionary<Guid, Product>();
 
         public Product[] All()
         {
@@ -29,17 +29,17 @@ namespace ITYardService.Repository
             }
         }
 
-        public Product GetById(int id)
+        public Product GetById(Guid id)
         {
             return _products[id];
         }
 
-        public void Update(int id, Product Product) 
+        public void Update(Guid id, Product Product) 
         {
             _products[id]= Product;
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             if (_products.ContainsKey(id))
             {
@@ -50,7 +50,7 @@ namespace ITYardService.Repository
             Logger.LogError("Id not exist");
         }
 
-        public void DisplayUserInfo(int id)
+        public void DisplayUserInfo(Guid id)
         {
             _products[id].DisplayEntityInfo();
         }

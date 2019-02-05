@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using System.Text;
 using ITYardService.common;
-
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
 
 namespace ITYardService.Models
 {
+    [DataContract]
     public class OrderItem : EntityBase
     {
-        public Product Product { get; set; }
-        public int Quantity { get; set; }
-        public decimal PurchasePrice { get; set; }
+        [DataMember] public Product Product { get; set; }
+        [DataMember] public int Quantity { get; set; }
+        [DataMember] public decimal PurchasePrice { get; set; }
 
 
-        public OrderItem(int OrderItemId, Product Product, int Quantity)
+        public OrderItem(Guid OrderItemId, Product Product, int Quantity)
         {
             base.Id = OrderItemId;
             this.Product = Product;
@@ -27,7 +29,7 @@ namespace ITYardService.Models
             Console.WriteLine($"Product Id - {base.Id}, product name - {(this.Product).ProductName}, quantity - {this.Quantity}, purchase price - {this.PurchasePrice}");
         }
 
-        public new bool Validate()
+        public override bool Validate()
         {
             if (Quantity <= 0)
             {

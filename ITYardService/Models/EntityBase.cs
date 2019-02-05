@@ -2,27 +2,26 @@
 using System.Collections.Generic;
 using System.Text;
 using ITYardService.common;
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
 
 namespace ITYardService.Models
 {
-    public class EntityBase
+    [DataContract]
+    public abstract class EntityBase
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        [DataMember] public Guid Id { get; set; }
+
+        public EntityBase()
+        {
+            this.Id = Guid.NewGuid();
+        }
 
         public virtual void DisplayEntityInfo()
         {
-            Console.WriteLine($"Id - {this.Id}, name - {this.Name}");
+            Console.WriteLine($"Id - {this.Id}");
         }
 
-        public bool Validate()
-        {
-            if (string.IsNullOrWhiteSpace(this.Name))
-            {
-                Logger.LogError("Validate error");
-                return false;
-            }
-            return true;
-        }
+        public abstract bool Validate();
     }
 }

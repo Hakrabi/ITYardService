@@ -13,7 +13,7 @@ namespace ITYardService.Repository
     public class OrderItemRepository
     {
 
-        public static Dictionary<int, OrderItem> _orderItems = new Dictionary<int, OrderItem>();
+        public static Dictionary<Guid, OrderItem> _orderItems = new Dictionary<Guid, OrderItem>();
         public int Count = 0;
 
         public OrderItem[] All()
@@ -31,17 +31,17 @@ namespace ITYardService.Repository
             }
         }
 
-        public OrderItem GetById(int id)
+        public OrderItem GetById(Guid id)
         {
             return _orderItems[id];
         }
 
-        public void Update(int id, OrderItem OrderItem) 
+        public void Update(Guid id, OrderItem OrderItem) 
         {
             _orderItems[id]= OrderItem;
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             if (_orderItems.ContainsKey(id))
             {
@@ -53,7 +53,7 @@ namespace ITYardService.Repository
             Logger.LogError("Id not exist");
         }
 
-        public void DisplayUserInfo(int id)
+        public void DisplayUserInfo(Guid id)
         {
             _orderItems[id].DisplayEntityInfo();
         }

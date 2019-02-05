@@ -4,35 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ITYardService.common;
-
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
 
 namespace ITYardService.Models
 {
+    [DataContract]
     public class Customer : EntityBase
     {
-        public List<Address> AddressList { get; set; }
-        public int CustomerType { get; set; }
-        public static int InstanceCount { get; set; }
-        public string LastName { get; set; }
-        public string EmailAddress { get; set; }
-        public readonly string FullName;
+        [DataMember] public List<Address> AddressList { get; set; }
+        [DataMember] public int CustomerType { get; set; }
+        [DataMember] public static int InstanceCount { get; set; }
+        [DataMember] public string FirstName { get; set; }
+        [DataMember] public string LastName { get; set; }
+        [DataMember] public string EmailAddress { get; set; }
+        [DataMember] public readonly string FullName;
 
-        public Customer()
-            : this(0, string.Empty)
+        public Customer():base()
+            //: this(Guid.Empty, string.Empty
         {
         }
-        public Customer(int customerId, string name)
+        public Customer(Guid customerId, string name)
         {
             base.Id = customerId;
-            base.Name = name;
+            this.FirstName = name;
             //AddressList = new List<Address>();
         }
 
         public override void DisplayEntityInfo()
         {
-            Console.WriteLine($"Customer Id - {base.Id}, first name - {base.Name}, last name - {this.LastName}");
+            Console.WriteLine($"Customer Id - {base.Id}, first name - {this.FirstName}, last name - {this.LastName}");
         }
-        public new bool Validate()
+        public override bool Validate()
         {
             var isValid = true;
             if (string.IsNullOrWhiteSpace(LastName)) isValid = false;
@@ -45,6 +48,5 @@ namespace ITYardService.Models
 
             return isValid;
         }
-
     }
 }

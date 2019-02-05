@@ -10,15 +10,16 @@ using ITYardService.Models;
 
 namespace ITYardService.Repository
 {
-    public class OrderRepository
+    public class OrderRepository 
     {
 
-        public static Dictionary<int, Order> _orders = new Dictionary<int, Order>();
+        public static Dictionary<Guid, Order> _orders = new Dictionary<Guid, Order>();
 
-        public Order[] All()
+        /*public List<Order> All()
         {
-            return (_orders.Values).ToArray();
-        }
+            List<Order> = new List<Order>();
+            return _orders.Keys.ToList();
+        }*/
 
         public void Insert(Order Order)
         {
@@ -27,30 +28,35 @@ namespace ITYardService.Repository
                 _orders.Add(Order.Id, Order);
                 Logger.LogInfo($"Order {Order.Id} was inserted");
             }
+            //var entity = Order as EntityBase;
+            //if (entity != null)
+            //{
+
+            //}
         }
 
-        public Order GetById(int id)
+        public Order GetById(Guid id)
         {
             return _orders[id];
         }
 
-        public void Update(int id, Order Order) 
+        public void Update(Guid id, Order Order) 
         {
             _orders[id]= Order;
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             if (_orders.ContainsKey(id))
             {
                 _orders.Remove(id);
-                Logger.LogInfo($"Product {id} was deleted");
+                Logger.LogInfo($"Order {id} was deleted");
                 return;
             }
             Logger.LogError("Id not exist");
         }
 
-        public void DisplayUserInfo(int id)
+        public void DisplayUserInfo(Guid id)
         {
             _orders[id].DisplayEntityInfo();
         }

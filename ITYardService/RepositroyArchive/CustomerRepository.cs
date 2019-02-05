@@ -1,11 +1,13 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ITYardService.common;
 using ITYardService.Models;
-
+using System.Runtime.Serialization.Json;
+using System.Runtime.Serialization;
 
 
 namespace ITYardService.Repository
@@ -13,7 +15,7 @@ namespace ITYardService.Repository
     public class CustomerRepository
     {
 
-        public static Dictionary<int, Customer> _customers = new Dictionary<int, Customer>();
+        public static Dictionary<Guid, Customer> _customers = new Dictionary<Guid, Customer>();
 
         public Customer[] All()
         {
@@ -25,21 +27,29 @@ namespace ITYardService.Repository
             if (Customer.Validate())
             {
                 _customers.Add(Customer.Id, Customer);
+
+                DataContractJsonSerializer jsonFormatter = new DataContractJsonSerializer(typeof(Customer));
+                using (FileStream fs = new FileStream("object.json", FileMode.OpenOrCreate))
+                {
+                    jsonFormatter.WriteObject(fs, Customer);
+                }
+
                 Logger.LogInfo($"Customer {Customer.Id} was inserted");
+
             }
         }
 
-        public Customer GetById(int id)
+        public Customer GetById(Guid id)
         {
             return _customers[id];
         }
 
-        public void Update(int id, Customer Customer) 
+        public void Update(Guid id, Customer Customer) 
         {
             _customers[id] = Customer;
         }
 
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
             if (_customers.ContainsKey(id))
             {
@@ -50,7 +60,7 @@ namespace ITYardService.Repository
             Logger.LogError("Id not exist");
         }
 
-        public void DisplayCustomerInfo(int id)
+        public void DisplayCustomerInfo(Guid id)
         {
             _customers[id].DisplayEntityInfo();
         }

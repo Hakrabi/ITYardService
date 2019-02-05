@@ -1,0 +1,35 @@
+[33mcommit 13657a0c6513f5f4ad37bde5258dc753df38af1b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Hakrabi <dudnik.dmitriy.2000@gmail.com>
+Date:   Wed Jan 23 15:00:57 2019 +0200
+
+    New repository and Logger in file was added.
+
+[33mcommit cc48e6dc7faef16d69a5bd02d9a1e83fe5c6f2d0[m
+Author: Hakrabi <dudnik.dmitriy.2000@gmail.com>
+Date:   Sun Jan 13 18:39:56 2019 +0200
+
+    Task was completed
+
+[33mcommit a54fd847ddd1021b3a6b6c1f08324b540d205b26[m
+Author: Hakrabi <dudnik.dmitriy.2000@gmail.com>
+Date:   Thu Dec 13 19:13:55 2018 +0200
+
+    Add DisplayUserInfoDecrypt to show decrypt password
+
+[33mcommit 8983aeff1c938323ca04469ae1150c2ea6bc6c20[m
+Author: Hakrabi <dudnik.dmitriy.2000@gmail.com>
+Date:   Thu Dec 13 16:40:23 2018 +0200
+
+    Add DisplayUserInfoDecrypt tо show decrypt password
+
+[33mcommit d98ec7e32ff91d4cb13c8dbe705d3837f09f10a6[m
+Author: Hakrabi <dudnik.dmitriy.2000@gmail.com>
+Date:   Thu Dec 13 14:15:18 2018 +0200
+
+    test connect
+
+[33mcommit cca06463bc2499e337bdd92d3d8a8eab6c05a9fd[m
+Author: Hakrabi <dudnik.dmitriy.2000@gmail.com>
+Date:   Thu Dec 13 13:54:31 2018 +0200
+
+    First commit
