@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ITYardService.common;
 using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
+using ITYardService.Repository;
 
 namespace ITYardService.Models
 {
@@ -19,6 +20,7 @@ namespace ITYardService.Models
         [DataMember] public string LastName { get; set; }
         [DataMember] public string EmailAddress { get; set; }
         [DataMember] public readonly string FullName;
+        [DataMember] public List<Guid>Orders { get; set; }
 
         public Customer():base()
             //: this(Guid.Empty, string.Empty
@@ -28,12 +30,22 @@ namespace ITYardService.Models
         {
             base.Id = customerId;
             this.FirstName = name;
-            //AddressList = new List<Address>();
+            Orders = new List<Guid>();
         }
 
         public override void DisplayEntityInfo()
         {
-            Console.WriteLine($"Customer Id - {base.Id}, first name - {this.FirstName}, last name - {this.LastName}");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"\nCustomer {this.FirstName} {this.LastName} :: {base.Id}\n");
+            Console.ResetColor();
+
+            foreach (var OrderId in Orders)
+            {
+                (GenericRepository<Order>._general[OrderId]).DisplayEntityInfo();
+
+            }
+
+            //Console.WriteLine($"Customer Id - {base.Id}, first name - {this.FirstName}, last name - {this.LastName}");
         }
         public override bool Validate()
         {

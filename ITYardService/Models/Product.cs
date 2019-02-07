@@ -25,7 +25,11 @@ namespace ITYardService.Models
 
         public override void DisplayEntityInfo()
         {
-            Console.WriteLine($"Product Id - {base.Id}, product name - {this.ProductName}, description - {this.Description}, current price - {this.CurrentPrice}");
+            Console.WriteLine($"\t\t -> Product {ProductName}. Price: {CurrentPrice} :: {Id}");
+            Console.WriteLine($"\t\t\t -> {Description}\n");
+
+
+            //Console.WriteLine($"Product Id - {base.Id}, product name - {this.ProductName}, description - {this.Description}, current price - {this.CurrentPrice}");
         }
 
         public override bool Validate()

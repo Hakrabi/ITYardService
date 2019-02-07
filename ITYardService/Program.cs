@@ -31,7 +31,7 @@ namespace ITYardService
             AddressList.Add(address1);
             customer1.AddressList = AddressList;
 
-            var CustomerRepository = new GenericRepositoryJSON<Customer>();
+            var CustomerRepository = new GenericRepository<Customer>();
             CustomerRepository.Insert(customer1);
 
 
@@ -48,26 +48,26 @@ namespace ITYardService
 
 
             //Create first Order and insert it to Repository
-            var orderItem1 = new OrderItem(Guid.NewGuid(), product1, 3);
-            var orderItem2 = new OrderItem(Guid.NewGuid(), product2, 5);
+            var orderItem1 = new OrderItem(Guid.NewGuid(), product1.Id, 3);
+            var orderItem2 = new OrderItem(Guid.NewGuid(), product2.Id, 5);
 
             var OrderItemRepository1 = new GenericRepository<OrderItem>();
             OrderItemRepository1.Insert(orderItem1);
             OrderItemRepository1.Insert(orderItem2);
 
 
-            var Order1 = new Order(Guid.NewGuid(), customer1, DateTime.Now, address1, OrderItemRepository1.GetAllID());
+            var Order1 = new Order(Guid.NewGuid(), customer1.Id, DateTime.Now, address1, OrderItemRepository1.GetAllID());
             OrderRepository.Insert(Order1);
 
 
             //Create second Order and insert it to Repository
-            var orderItem3 = new OrderItem(Guid.NewGuid(), product1, 2);
+            var orderItem3 = new OrderItem(Guid.NewGuid(), product1.Id, 2);
 
             var OrderItemRepository2 = new GenericRepository<OrderItem>();
             OrderItemRepository2.Insert(orderItem3);
 
 
-            var Order2 = new Order(Guid.NewGuid(), customer1, DateTime.Now, address1, OrderItemRepository2.GetAllID());
+            var Order2 = new Order(Guid.NewGuid(), customer1.Id, DateTime.Now, address1, OrderItemRepository2.GetAllID());
             OrderRepository.Insert(Order2);
 
 
@@ -76,8 +76,10 @@ namespace ITYardService
             OrderRepository.Delete(Order2.Id);
 
             //
-            var GenreralRepository2 = new GenericRepositoryJSON<Order>();
+            var GenreralRepository2 = new GenericRepository<Order>();
             GenreralRepository2.Insert(Order2);
+
+            customer1.DisplayEntityInfo();
 
             /*
             //Create first Customer and insert it to Repository
