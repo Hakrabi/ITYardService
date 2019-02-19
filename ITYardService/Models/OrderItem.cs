@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ITYardService.common;
+using ITYardService.Common;
 using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
 using ITYardService.Repository;
@@ -14,6 +14,7 @@ namespace ITYardService.Models
         [DataMember] public Guid ProductId { get; set; }
         [DataMember] public int Quantity { get; set; }
         [DataMember] public decimal PurchasePrice { get; set; }
+        public Color Color { get; set; }
 
 
         public OrderItem(Guid OrderItemId, Guid ProductId, int Quantity)
@@ -31,8 +32,8 @@ namespace ITYardService.Models
         {
 
             Console.ForegroundColor = ConsoleColor.Magenta;
-            Console.WriteLine($"\t\t -> OrderItem {PurchasePrice}. Quantity: {Quantity} :: {Id}");
-            Console.ResetColor();
+            Console.WriteLine($"\t\t -> OrderItem. Purchase Price: {PurchasePrice}. Quantity: {Quantity} :: {Id}");
+            Console.ResetColor(); 
 
             (GenericRepository<Product>._general[ProductId]).DisplayEntityInfo();
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ITYardService.common
+namespace ITYardService.Common
 {
     class Logger
     {

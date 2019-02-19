@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using ITYardService.Repository;
-using ITYardService.common;
+using ITYardService.Common;
 using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
 
@@ -17,12 +17,11 @@ namespace ITYardService.Models
         [DataMember] public List<Guid> OrderItems { get; set; }
 
         
-        public Order(Guid OrderId, Guid CustomerId, DateTime OrderDate, Address ShippingAdress, List<Guid> OrderItems)
+        public Order(Guid OrderId, Guid CustomerId, DateTime OrderDate, List<Guid> OrderItems)
         {
             base.Id = OrderId;
             this.CustomerId = CustomerId;
             this.OrderDate = OrderDate;
-            this.ShippingAdress = ShippingAdress;
             this.OrderItems = OrderItems;
 
             //CustomerRepositry.

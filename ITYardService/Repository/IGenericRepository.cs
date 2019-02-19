@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ITYardService.Repository
 {
-    interface IGenericRepository<T>
+    public interface IGenericRepository<T>
     {
         IEnumerable<T> All();
         bool Insert(T entity);

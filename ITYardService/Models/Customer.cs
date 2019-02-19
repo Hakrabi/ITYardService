@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ITYardService.common;
+using ITYardService.Common;
 using System.Runtime.Serialization.Json;
 using System.Runtime.Serialization;
 using ITYardService.Repository;
@@ -21,15 +21,21 @@ namespace ITYardService.Models
         [DataMember] public string EmailAddress { get; set; }
         [DataMember] public readonly string FullName;
         [DataMember] public List<Guid>Orders { get; set; }
+        public Gender Gender { get; set; }
+        public int Age { get; set; }
 
         public Customer():base()
             //: this(Guid.Empty, string.Empty
         {
         }
-        public Customer(Guid customerId, string name)
+        public Customer(Guid customerId, string FirstName, string LastName, string EmailAddress, Gender Gender, int Age)
         {
             base.Id = customerId;
-            this.FirstName = name;
+            this.FirstName = FirstName;
+            this.LastName = LastName;
+            this.EmailAddress = EmailAddress;
+            this.Gender = Gender;
+            this.Age = Age;
             Orders = new List<Guid>();
         }
 
